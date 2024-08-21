@@ -17,7 +17,9 @@ public class AppiumBasics extends BaseTest{
    	    driver.findElement(AppiumBy.xpath("(//android.widget.LinearLayout[2])")).click(); 
         String alertTitle = driver.findElement(By.id("android:id/alertTitle")).getText();
         Assert.assertEquals(alertTitle, "WiFi settings");
-   	    driver.findElement(By.id("android:id/edit")).sendKeys("Testing Testing");
+
+
+        driver.findElement(By.id("android:id/edit")).sendKeys("Testing Testing");
    	    driver.findElement(By.id("android:id/button1")).click();
         // Getting the above element using className instead
         // driver.findElements(AppiumBy.className("android.widget.Button")).get(1).click();

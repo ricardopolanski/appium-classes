@@ -20,9 +20,16 @@ public class LongPress extends BaseTest{
         driver.findElement(AppiumBy.accessibilityId("Expandable Lists")).click();
         driver.findElement(AppiumBy.accessibilityId("1. Custom Adapter")).click();
         WebElement ele = driver.findElement(By.xpath("//android.widget.TextView[@text='People Names']"));
+        LongPressGesture(ele);
 
-        driver.executeScript("mobile: longClickGesture", ImmutableMap.of("elementId", ((RemoteWebElement)ele).getId(),
-           "duration", 2000));
+        // driver.executeScript("mobile: longClickGesture", ImmutableMap.of("elementId", ((RemoteWebElement)ele).getId(),
+        //    "duration", 2000));
+
+        String text = driver.findElement(By.xpath("//android.widget.TextView[@text='Sample menu']")).getText();        
+        Assert.assertTrue(driver.findElement(By.xpath("//android.widget.TextView[@text='Sample menu']")).isDisplayed());
+        Assert.assertEquals(text, "Sample menu");
+
+        // Thread.sleep(2000);
     }
 
     // public static void main(String[] args) {

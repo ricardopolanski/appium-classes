@@ -24,31 +24,30 @@ public class BaseTest {
     public AppiumDriverLocalService service;
 
     @BeforeClass
-    public void ConfigureAppium() throws MalformedURLException, URISyntaxException
-    {
-        service = new AppiumServiceBuilder().withAppiumJS(new File("C:/Users/ercirci/AppData/Roaming/npm/node_modules/appium/build/lib/main.js"))
-        .withIPAddress("127.0.0.1").usingPort(4723).build();
+    public void ConfigureAppium() throws MalformedURLException, URISyntaxException {
+        service = new AppiumServiceBuilder()
+                .withAppiumJS(new File("C:/Users/ercirci/AppData/Roaming/npm/node_modules/appium/build/lib/main.js"))
+                .withIPAddress("127.0.0.1").usingPort(4723).build();
 
         service.start();
 
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName("Polanski_Emulator");
-        options.setApp("C:/Users/ercirci/Projects/Appium/appium/src/test/java/appium_test/resources/ApiDemos-debug.apk");
-        
-        
+        options.setApp(
+                "C:/Users/ercirci/Projects/Appium/appium/src/test/java/appium_test/resources/ApiDemos-debug.apk");
+
         driver = new AndroidDriver(new URI("http://127.0.0.1:4723/").toURL(), options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        
+
     }
 
     public void LongPressGesture(WebElement ele) {
-        driver.executeScript("mobile: longClickGesture", ImmutableMap.of("elementId", ((RemoteWebElement)ele).getId(),
-           "duration", 2000));
+        driver.executeScript("mobile: longClickGesture", ImmutableMap.of("elementId", ((RemoteWebElement) ele).getId(),
+                "duration", 2000));
     }
 
     @AfterClass
-    public void tearDown()
-    {
+    public void tearDown() {
         driver.quit();
         service.stop();
     }

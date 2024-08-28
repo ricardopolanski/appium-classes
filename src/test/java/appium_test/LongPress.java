@@ -28,8 +28,6 @@ public class LongPress extends BaseTest{
         String text = driver.findElement(By.xpath("//android.widget.TextView[@text='Sample menu']")).getText();        
         Assert.assertTrue(driver.findElement(By.xpath("//android.widget.TextView[@text='Sample menu']")).isDisplayed());
         Assert.assertEquals(text, "Sample menu");
-
-        // Thread.sleep(2000);
     }
 
     // public static void main(String[] args) {

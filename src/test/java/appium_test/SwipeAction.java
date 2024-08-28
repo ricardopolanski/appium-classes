@@ -1,21 +1,18 @@
 package appium_test;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.errorprone.annotations.Immutable;
-
 import io.appium.java_client.AppiumBy;
 
 public class SwipeAction extends BaseTest{
 
     @Test
-    public void SwipeAction() throws InterruptedException
+    public void SwipeGeture() throws InterruptedException
     {
         driver.findElement(AppiumBy.accessibilityId("Views")).click();
         driver.findElement(AppiumBy.accessibilityId("Gallery")).click();

@@ -21,12 +21,15 @@ public class DragAndDropAction extends BaseTest{
         driver.findElement(AppiumBy.accessibilityId("Drag and Drop")).click();
         
         WebElement dragImage = driver.findElement(By.id("io.appium.android.apis:id/drag_dot_1"));
-
+        
         driver.executeScript("mobile: dragGesture", ImmutableMap.of(
             "elementId", ((RemoteWebElement) dragImage).getId(),
             "endX", 829,
             "endY", 755
-        ));
+            ));
+        String result = driver.findElement(By.id("io.appium.android.apis:id/drag_result_text")).getText();
+            
+        Assert.assertEquals(result, "Dropped!");
 
         Thread.sleep(2000);
     }

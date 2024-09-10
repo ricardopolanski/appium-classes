@@ -2,12 +2,8 @@ package appium_test;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import com.google.common.collect.ImmutableMap;
-import com.google.errorprone.annotations.Immutable;
 
 import io.appium.java_client.AppiumBy;
 

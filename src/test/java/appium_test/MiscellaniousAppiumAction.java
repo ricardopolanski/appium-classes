@@ -1,5 +1,6 @@
 package appium_test;
 
+import io.appium.java_client.android.Activity;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -9,11 +10,15 @@ import org.openqa.selenium.DeviceRotation;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.google.common.collect.ImmutableMap;
+
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.android.options.UiAutomator2Options;
+import io.appium.java_client.android.Activity;
 // import io.appium.java_client.service.local.AppiumDriverLocalService;
 
 
@@ -36,15 +41,25 @@ public class MiscellaniousAppiumAction {
                 
         AndroidDriver driver = new AndroidDriver(new URI("http://127.0.0.1:4723/").toURL(), options);
 
+        /*  get the current app page to test is directly without navigating step by step
+         1- head to the page that will be tested
+         2- Open the terminal and run 'adb shell dumpsys window | find "mCurrentFocus'"
+            Return example:
+            mCurrentFocus=Window{dcf0c4d u0 io.appium.android.apis/io.appium.android.apis.preference.PreferenceDependencies}
 
-        driver.findElement(AppiumBy.accessibilityId("Preference")).click();
-    	driver.findElement(AppiumBy.xpath("//android.widget.TextView[@content-desc=\'3. Preference dependencies\']")).click(); 
+            everything before the slash is the package name
+            after the slash is the activity page
+        */
+
+        driver.executeScript("mobile: startActivity", ImmutableMap.of("intent","io.appium.android.apis/io.appium.android.apis.preference.PreferenceDependencies"));
+        Thread.sleep(500);
+       
     	driver.findElement(By.id("android:id/checkbox")).click();
 
         // Rotate device
         DeviceRotation landScape = new DeviceRotation(0, 0, 90);
         driver.rotate(landScape);
-        Thread.sleep(1000);
+        Thread.sleep(500);
         
         driver.findElement(AppiumBy.xpath("(//android.widget.LinearLayout[2])")).click(); 
         
